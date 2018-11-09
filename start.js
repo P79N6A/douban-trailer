@@ -1,2 +1,3 @@
-require('@babel/core')()
-require('./test/dec.js')
+require('@babel/register')()
+require('babel-polyfill')
+require('./server/index.js')

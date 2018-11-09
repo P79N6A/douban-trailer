@@ -1,24 +1,39 @@
 const Router = require('koa-router')
 const mongoose = require('mongoose')
 const router = new Router()
+import { controller, get, post, put } from '../lib/decorator'
+const {
+  getAllMovies,
+  getMovieDetail,
+  getRelativeMovies
+} = require('../service/movie')
 
-router.get('/movies/all', async (ctx, next) => {
-  const Movie = mongoose.model('Movie')
-  const movies = await Movie.find({}).sort({
-    'meta.createAt': -1
-  })
-  ctx.body = {
-    movies
+const Movie = mongoose.model('Movie')
+
+@controller('/api/v0/movies')
+export class movieController {
+  @get('/')
+  async getMovies (ctx, next) {
+    const { type, year } = ctx.query
+    const movies = await getAllMovies(type, year)
+    ctx.body = {
+      movies
+    }
   }
-})
 
-router.get('/movies/detail/:id', async (ctx, next) => {
-  const Movie = mongoose.model('Movie')
-  const id = ctx.params.id
-  const movie = await Movie.findOne({_id: id})
-  ctx.body = {
-    movie
+  @get('/:id')
+  async getMovieDetail (ctx, next) {
+    const id = ctx.params.id
+    const movie = await getMovieDetail(id)
+    const relativeMovies = await getRelativeMovies(movie)
+    ctx.body = {
+      data: {
+        movie,
+        relativeMovies
+      },
+      success: true
+    }
   }
-})
+}
 
-module.exports = router
+// module.exports = router

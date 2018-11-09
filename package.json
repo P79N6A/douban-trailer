@@ -25,14 +25,18 @@
     "axios": "^0.18.0",
     "bcrypt": "^3.0.2",
     "glob": "^7.1.3",
+    "global": "^4.3.2",
     "koa": "^2.5.3",
     "koa-router": "^7.4.0",
     "koa-views": "^6.1.4",
+    "lodash": "^4.17.11",
+    "lodash-es": "^4.17.11",
     "mongoose": "^5.3.3",
     "nanoid": "^1.3.0",
     "pug": "^2.0.3",
     "puppeteer": "^1.9.0",
     "puppeteer-core": "^1.9.0",
+    "ramda": "^0.25.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
   },
@@ -40,7 +44,12 @@
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-decorators": "^7.1.2",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
-    "@babel/preset-react": "^7.0.0"
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-polyfill": "^6.26.0"
   }
 }

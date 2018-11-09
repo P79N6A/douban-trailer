@@ -7,6 +7,24 @@ mongoose.Promise = global.Promise
 exports.initSchemas = () => {
   glob.sync((resolve(__dirname, './schema/', '**/*.js'))).forEach(require)
 }
+exports.initAdmin = async () => {
+  const User = mongoose.model('User')
+  let user = await User.findOne({
+    username: 'CP'
+  })
+
+  console.log('user===', user)
+
+  if (!user) {
+    const user = new User({
+      username: 'CP',
+      email: 'koa2@imooc.com',
+      password: '123qwe'
+    })
+    // user.save()
+  }
+}
+
 exports.connect = () => {
   let maxConnectTimes = 0;
   return new Promise((resolve, reject) => {

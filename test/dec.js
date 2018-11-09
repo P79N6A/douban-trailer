@@ -1,12 +1,16 @@
 class Boy {
-  @speak
+  @speak('zhongwen')
   run() {
     console.log('I can run')
+    console.log(this.language)
   }
 }
 
-function speak(target) {
-  console.log(target)
+function speak(language) {
+  return function(target, key, decorator) {
+    target.language = language
+    return decorator
+  }
 }
 
 const luke = new Boy()
