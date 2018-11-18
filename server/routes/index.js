@@ -1,6 +1,4 @@
-const Router = require('koa-router')
 const mongoose = require('mongoose')
-const router = new Router()
 import { controller, get, post, put } from '../lib/decorator'
 const {
   getAllMovies,
@@ -14,6 +12,7 @@ const Movie = mongoose.model('Movie')
 export class movieController {
   @get('/')
   async getMovies (ctx, next) {
+    console.log('ctx', ctx)
     const { type, year } = ctx.query
     const movies = await getAllMovies(type, year)
     ctx.body = {
@@ -36,4 +35,3 @@ export class movieController {
   }
 }
 
-// module.exports = router

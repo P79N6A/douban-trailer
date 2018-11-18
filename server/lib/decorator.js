@@ -5,7 +5,6 @@ const symbolPrefix = Symbol('prefix')
 const routerMap = new Map()
 const _ = require('lodash')
 const isArray = c => _.isArray(c) ? c : [c]
-console.log('======',isArray)
 export class Route {
   constructor(app, apiPath) {
     this.app = app

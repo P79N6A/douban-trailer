@@ -1,12 +1,10 @@
 const Router = require('koa-router')
-const mongoose = require('mongoose')
 const router = new Router()
 const { controller, get, post, put } = require('../lib/decorator')
 const {
   checkPassword
 } = require('../service/user')
 
-const Movie = mongoose.model('Movie')
 
 @controller('/api/v0/user')
 export class userController {
@@ -34,4 +32,3 @@ export class userController {
   }
 }
 
-module.exports = router

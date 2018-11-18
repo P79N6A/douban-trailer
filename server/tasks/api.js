@@ -6,7 +6,6 @@ const Category = mongoose.model('Category')
 async function fetchMovie(item) {
   const url = `http://api.douban.com/v2/movie/${item.doubanId}`
   const res = await rp(url)
-  console.log('res', res)
   let body
   try {
     body = JSON.parse(res)
@@ -23,26 +22,24 @@ async function fetchMovie(item) {
       { summary: null },
       { year: { $exists: false } },
       { title: '' },
+      // { tags: { $exists: false } },
       { summary: '' }
     ]
   })
-  console.log('movies=======', movies)
   for (let i = 0; i < movies.length; i++) {
     let movie = movies[i]
     let movieData = await fetchMovie(movie)
-
     if (movieData) {
-      let tags = movie.tags || []
-      movie.tags = tags
+      let tags = movieData.tags || []
+      movie.tags = movie.tags || []
       movie.summary = movieData.summary || ''
       movie.title = movieData.alt_title || movieData.title || ''
       movie.rawTitle = movieData.title || ''
       if (movieData.attrs) {
         movie.movieTypes = movieData.attrs.movie_type || []
         movie.year = movieData.attrs.year[0] || 2500
-
-        for (let i = 0; i < [movie[0]].movieTypes.length; i++) {
-          let item = movie.movieTypes[i]
+        for (let j = 0; j < movie.movieTypes.length; j++) {
+          let item = movie.movieTypes[j]
           let cat = await Category.findOne({
             name: item
           })
@@ -86,6 +83,7 @@ async function fetchMovie(item) {
         })
         movie.pubdate = pubdates
       }
+
       tags.forEach(tag => {
         movie.tags.push(tag.name)
       })

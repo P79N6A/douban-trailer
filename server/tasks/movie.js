@@ -23,6 +23,7 @@ const Movie = mongoose.model('Movie')
 
   child.on('message', data => {
     let result = data.result
+    console.log('data', data)
     result.forEach(async item => {
       let movie = await Movie.findOne({
         doubanId: item.doubanId

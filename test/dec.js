@@ -8,6 +8,9 @@ class Boy {
 
 function speak(language) {
   return function(target, key, decorator) {
+    console.log(target)
+    console.log(key)
+    console.log(decorator)
     target.language = language
     return decorator
   }

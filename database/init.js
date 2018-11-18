@@ -29,14 +29,14 @@ exports.connect = () => {
   let maxConnectTimes = 0;
   return new Promise((resolve, reject) => {
     console.log('process.env.NODE_ENV', process.env.NODE_ENV)
-    if (process.env.NODE_ENV !== 'production') {
-      mongoose.set('debug', true)
-    }
+    // if (process.env.NODE_ENV !== 'production') {
+    //   mongoose.set('debug', true)
+    // }
     mongoose.connect(db, { useNewUrlParser: true })
 
     mongoose.connection.on('disconnected', () => {
       console.log('disconnect')
-      maxConnectTimes ++;
+      maxConnectTimes++;
       if (maxConnectTimes < 5) {
         mongoose.connect(db, { useNewUrlParser: true })
       } else {

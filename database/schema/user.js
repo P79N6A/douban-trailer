@@ -53,21 +53,21 @@ userSchema.pre('save', function(next) {
 })
 
 userSchema.pre('save', function(next) {
-  if (!user.isModified('password')) return next();
+  if (!this.isModified('password')) return next();
   // 加盐
   bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
     if (err) return next(err)
     // 加指纹
-    bcrypt.hash(user.password, salt, (error, hash) => {
+    bcrypt.hash(this.password, salt, (error, hash) => {
       if (error) return next(error)
       this.password = hash
       next()
     })
   })
-  next()
+  // next()
 })
 
-userSchema.method = {
+userSchema.methods = {
   comparePassword: (_password, password) => {
     return new Promise((resolve, reject) => {
       bcrypt.compare(_password, password, (err, isMatch) => {
@@ -77,7 +77,7 @@ userSchema.method = {
     })
   },
 
-  incLoginAttepts: (user) => {
+  incLoginAttempts: (user) => {
     return new Promise((resole, reject) => {
       if (this.lockUntil && this.lockUntil < Date.now()) {
         this.update({
