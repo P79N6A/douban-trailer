@@ -5,7 +5,7 @@ const { resolve } = require('path')
 const { connect, initSchemas, initAdmin } = require('../database/init.js')
 
 const R = require('ramda')
-const MIDDLEWARES = ['router']
+const MIDDLEWARES = [  'router', 'parcel' ]
 
 const userMiddlewares = (app) => {
   R.map(

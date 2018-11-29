@@ -1,13 +1,12 @@
 {
   "plugins": [
-      "@babel/transform-async-to-generator",
       [
         "@babel/plugin-proposal-decorators",
         {
           "legacy": true
         }
       ],
-      ["@babel/plugin-proposal-class-properties", { "loose": true }],
+      "@babel/plugin-proposal-class-properties",
       [
           "@babel/plugin-transform-runtime",
           {
@@ -16,12 +15,6 @@
       ]
   ],
   "presets": [
-      "@babel/preset-react",
-      [
-          "@babel/preset-env",
-          {
-              "useBuiltIns": "entry"
-          }
-      ]
+      "@babel/preset-env"
   ]
 }

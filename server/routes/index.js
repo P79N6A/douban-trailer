@@ -12,11 +12,11 @@ const Movie = mongoose.model('Movie')
 export class movieController {
   @get('/')
   async getMovies (ctx, next) {
-    console.log('ctx', ctx)
     const { type, year } = ctx.query
     const movies = await getAllMovies(type, year)
     ctx.body = {
-      movies
+      success: true,
+      data: movies
     }
   }
 

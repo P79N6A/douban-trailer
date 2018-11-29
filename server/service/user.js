@@ -6,6 +6,7 @@ export const checkPassword = async (email, password) => {
   const user = await User.findOne({ email })
 
   if (user) {
+    // password 输入的密码
     match = await user.comparePassword(password, user.password)
   }
 

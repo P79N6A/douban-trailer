@@ -17,7 +17,6 @@ const store = oss(config.ossconfig)
   //   let result = await rp({url:movie.poster, encoding:null});
   // })
   for(let movie of movies) {
-
     if(movie.poster) {
       console.log(movie.poster)
       let fetchResult = await rp({url:movie.poster, encoding:null});

@@ -1,8 +1,11 @@
-import './assets/common.sass'
-function changeTitle() {
-  window.$('#app').html('打个包包')
-}
+import React from 'react'
+import { render } from 'react-dom'
+import {
+  BrowserRouter
+} from 'react-router-dom'
+import App from './app'
+const rootElement = document.getElementById('app')
 
-setTimeout(() => {
-  changeTitle()
-}, 2000)
+render(<BrowserRouter>
+  <App />
+</BrowserRouter>, rootElement)

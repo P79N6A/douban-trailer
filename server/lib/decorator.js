@@ -13,7 +13,6 @@ export class Route {
   }
 
   init() {
-    console.log('init====')
     glob.sync(resolve(this.apiPath, './**/*.js')).forEach(require)
     for (let [conf, controller] of routerMap) {
       const controllers = isArray(controller)

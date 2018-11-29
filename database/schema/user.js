@@ -8,7 +8,7 @@ const LOCK_TIME = 2 * 60 * 60 * 1000
 
 const userSchema = new Schema({
   username: {
-    unique : true,
+    unique: true,
     required: true,
     type: String
   },

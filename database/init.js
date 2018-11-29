@@ -13,7 +13,6 @@ exports.initAdmin = async () => {
     username: 'CP'
   })
 
-  console.log('user===', user)
 
   if (!user) {
     const user = new User({
@@ -28,7 +27,6 @@ exports.initAdmin = async () => {
 exports.connect = () => {
   let maxConnectTimes = 0;
   return new Promise((resolve, reject) => {
-    console.log('process.env.NODE_ENV', process.env.NODE_ENV)
     // if (process.env.NODE_ENV !== 'production') {
     //   mongoose.set('debug', true)
     // }
